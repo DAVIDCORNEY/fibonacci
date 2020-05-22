@@ -1,0 +1,13 @@
+sudo: required
+services:
+  - docker
+
+before install:
+  - docker build -t davidcorney/react-test ./Client/Dockerfile.dev
+
+script: docker run -e CI=true davidcorney/react-test
+
+after_success: docker build -t davidcorney/multi-client ./client
+  docker build -t davidcorney/multi-nginx ./nginx
+  docker build -t davidcorney/multi-server ./server
+  docker build -t davidcorney/multi-worker ./worker
