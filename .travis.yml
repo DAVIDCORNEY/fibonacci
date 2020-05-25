@@ -14,7 +14,7 @@ after_success:
   - docker build -t davidcorney/multi-server ./server
   - docker build -t davidcorney/multi-worker ./worker
   #login to docker cli
-  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push davidcorney/multi-client
   - docker push davidcorney/multi-nginx
   - docker push davidcorney/multi-server
